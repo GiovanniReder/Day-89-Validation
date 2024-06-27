@@ -3,6 +3,7 @@ package giovanni.validation.Blog;
 import giovanni.validation.Author.Author;
 import giovanni.validation.Author.AuthorService;
 import giovanni.validation.exceptions.NotFoundException;
+import giovanni.validation.payloads.NewBlogPayload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

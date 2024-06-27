@@ -1,8 +1,11 @@
 package giovanni.validation.Author;
 
+import giovanni.validation.exceptions.BadRequestException;
+import giovanni.validation.payloads.NewAuthorDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -10,12 +13,17 @@ import org.springframework.web.bind.annotation.*;
 public class AuthorController {
     @Autowired
     AuthorService authorsService;
+    NewAuthorDTO newAuthorDTO;
 
     // 1. - POST http://localhost:3001/authors (+ req.body)
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED) // <-- 201
-    public Author saveAuthor(@RequestBody Author body) throws Exception {
-        return authorsService.save(body);
+    public NewAuthorDTO saveAuthor(@RequestBody  Author body , BindingResult validationResult) throws Exception {
+        if (validationResult.hasErrors()){
+            System.out.println(validationResult.getAllErrors());
+        throw new BadRequestException(validationResult.getAllErrors());
+        }
+return new NewAuthorDTO(body.getName(), body.getSurname(), body.getEmail(), body.getDateOfBirth());
     }
 
     // 2. - GET http://localhost:3001/authors

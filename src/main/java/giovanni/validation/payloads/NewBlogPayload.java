@@ -1,4 +1,4 @@
-package giovanni.validation.Blog;
+package giovanni.validation.payloads;
 
 import lombok.Getter;
 

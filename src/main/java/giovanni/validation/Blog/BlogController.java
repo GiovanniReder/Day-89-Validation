@@ -1,5 +1,6 @@
 package giovanni.validation.Blog;
 
+import giovanni.validation.payloads.NewBlogPayload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
